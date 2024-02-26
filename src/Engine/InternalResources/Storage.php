@@ -126,7 +126,7 @@ class Storage
     public static function createImage(Image $image, string $subfoldersRelativePath = ""): string
     {
         $imageFolderAbsolutePath = self::getResourcesPath()
-            . "/Medias/Images/$subfoldersRelativePath/";
+            . "/$subfoldersRelativePath/";
 
         $imageAbsolutePath = $imageFolderAbsolutePath
             . $image->getName();
