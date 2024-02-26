@@ -43,7 +43,7 @@ class Debug
      */
     private static function importCss(): void
     {
-        $debugCss = file_get_contents("./DebugRendering/rendering.css");
+        $debugCss = file_get_contents(dirname("DebugRendering/rendering.css"));
 
         echo "<style>$debugCss</style>";
     }
