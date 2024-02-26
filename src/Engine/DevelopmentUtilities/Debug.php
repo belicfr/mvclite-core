@@ -43,8 +43,26 @@ class Debug
      */
     private static function importCss(): void
     {
-        $debugCss = file_get_contents(__DIR__
-            . "/DebugRendering/rendering.css");
+//        $debugCss = file_get_contents(__DIR__
+//            . "/DebugRendering/rendering.css");
+
+        $debugCss = 'div[mvclite-dd] {
+                       border: solid 3px darkorange;
+                       border-radius: 10px;
+                       padding: 10px;
+                       color: white;
+                       font-family: monospace;
+                       background: #212121;
+                       margin-bottom: 20px;
+                       box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+                     }
+                     div[mvclite-dd]::before {
+                       content: "DEBUG:";
+                       color: darkorange;
+                     }
+                     div[mvclite-dd] > pre {
+                       word-wrap: anywhere;
+                     }';
 
         echo "<style>$debugCss</style>";
     }
