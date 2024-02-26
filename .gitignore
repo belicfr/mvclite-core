@@ -1,1 +1,11 @@
 /vendor/
+/node_modules/
+.htaccess
+.idea/
+.vscode/
+.DS_Store
+config.php
+Writerside/*
+Writerside2/
+.phpdoc/
+build/
