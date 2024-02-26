@@ -3,6 +3,7 @@
 namespace MvcliteCore\Router;
 
 use MvcliteCore\Engine\DevelopmentUtilities\Debug;
+use MvcliteCore\Engine\Entities\File;
 use MvcliteCore\Router\Exceptions\UndefinedInputException;
 use MvcliteCore\Router\Exceptions\UndefinedParameterException;
 
@@ -22,12 +23,16 @@ class Request
     /** Current request parameters. */
     private array $parameters;
 
+    /** Current request files. */
+    private array $files;
+
     public function __construct()
     {
         $this->uri = $_SERVER["REQUEST_URI"];
 
         $this->saveInputs();
         $this->saveParameters();
+        $this->saveFiles();
     }
 
     /**
@@ -119,5 +124,38 @@ class Request
         }
 
         return $this->getParameters()[$key];
+    }
+
+    /**
+     * Saves $_GET values and returns them.
+     *
+     * @return array Files array
+     */
+    public function saveFiles(): array
+    {
+        $this->files = [];
+
+        foreach ($_FILES as $fileKey => $file)
+        {
+            $this->files[$fileKey] = new File(
+                $file["name"], $file["full_path"], $file["type"],
+                $file["tmp_name"], $file["error"], $file["size"],
+            );
+        }
+
+        return $this->files;
+    }
+
+    /**
+     * @return array Current request files array
+     */
+    public function getFiles(): array
+    {
+        return $this->files;
+    }
+
+    public function getFile(string $name): ?File
+    {
+        return $this->getFiles()[$name] ?? null;
     }
 }
