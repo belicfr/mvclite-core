@@ -88,7 +88,7 @@ class MvcLiteException extends Exception
     private static function importCss(): void
     {
         $debugCss = file_get_contents(dirname($_SERVER['DOCUMENT_ROOT']
-                      . "vendor/belicfr/MvcliteCore/src/InternalResources/ExceptionRendering/rendering.css"));
+                      . "/vendor/belicfr/MvcliteCore/src/InternalResources/ExceptionRendering/rendering.css"));
 
         echo "<style>$debugCss</style>";
     }
