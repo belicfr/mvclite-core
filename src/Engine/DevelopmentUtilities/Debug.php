@@ -43,8 +43,8 @@ class Debug
      */
     private static function importCss(): void
     {
-        $debugCss = file_get_contents($_SERVER['DOCUMENT_ROOT']
-            . "/vendor/belicfr/mvclite-core/src/Engine/DevelopmentUtilities/DebugRendering/rendering.css");
+        $debugCss = file_get_contents(__DIR__
+            . "/DebugRendering/rendering.css");
 
         echo "<style>$debugCss</style>";
     }
