@@ -1,0 +1,22 @@
+{
+    "name": "belicfr/mvclite-core",
+    "description": "MVCLite core part",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "MvcliteCore\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jonathan",
+            "email": "96206878+belicfr@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "ext-pdo": "*",
+        "symfony/string": "^7.0",
+        "twig/twig": "^3.0"
+    }
+}

@@ -1,0 +1,24 @@
+div[mvclite-dd] {
+  border: solid 3px darkorange;
+  border-radius: 10px;
+
+  padding: 10px;
+
+  color: white;
+  font-family: monospace;
+
+  background: #212121;
+
+  margin-bottom: 20px;
+
+  box-shadow: 0 0 10px rgba(0 0 0 / .4);
+
+  &::before {
+    content: "DEBUG:";
+    color: darkorange;
+  }
+
+  > pre {
+    word-wrap: anywhere;
+  }
+}

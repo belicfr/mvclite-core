@@ -1,0 +1,41 @@
+div[mvclite-dialog] {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+}
+div[mvclite-dialog] > .dialog-window {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 50px;
+  background: white;
+  width: 75%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+div[mvclite-dialog] > .dialog-window > h1 {
+  font-weight: 900;
+}
+div[mvclite-dialog] > .dialog-window hr {
+  border: solid 1px #E6E6E6;
+}
+div[mvclite-dialog] > .dialog-window p.message {
+  font-size: 15px;
+  padding: 5px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  background: #E6E6E6;
+}
+div[mvclite-dialog] > .dialog-window p > span.mono {
+  font-size: 20px;
+}
+div[mvclite-dialog] > .dialog-window .bold {
+  font-weight: 900;
+}
+div[mvclite-dialog] > .dialog-window .mono {
+  font-family: monospace;
+}
+
+/*# sourceMappingURL=rendering.css.map */
