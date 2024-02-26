@@ -87,8 +87,7 @@ class MvcLiteException extends Exception
      */
     private static function importCss(): void
     {
-        $debugCss = file_get_contents(Storage::getEnginePath()
-            . "/InternalResources/ExceptionRendering/rendering.css");
+        $debugCss = file_get_contents("InternalResources/ExceptionRendering/rendering.css");
 
         echo "<style>$debugCss</style>";
     }
