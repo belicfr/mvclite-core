@@ -18,7 +18,7 @@
 You can install *MVCLite* via **Composer**. Run the following command in your terminal:
 
 ```bash
-composer create-project belicfr/mvclite
+composer create-project belicfr/mvclite project-name
 ```
 
 After installing *MVCLite*, you have to configure your application's settings in the `config` directory. The `config.php` file contains the main settings for your application.
@@ -44,7 +44,7 @@ You also have to configure the **htaccess** file, you can use the `.htaccess_exa
 
 ```apache
 RewriteEngine On
-RewriteBase /website/
+RewriteBase /
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !src/resources/(.*)$
