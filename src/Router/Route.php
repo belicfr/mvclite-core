@@ -12,7 +12,7 @@ use MvcliteCore\Router\Exceptions\AlreadyUsedRouteNameException;
  */
 class Route
 {
-    /** HTTP request method: POST | GET */
+    /** HTTP request method */
     private string $httpMethod;
 
     /** Complete URL relative path linked to current route. */
