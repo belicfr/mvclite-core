@@ -23,15 +23,30 @@ class Model implements JsonSerializable
      */
     private array $publicAttributes;
 
-    public function __construct()
+    /**
+     * Attributes to hide during model publishing.
+     */
+    private array $hidden = [];
+
+    public function __construct(array $hidden = [])
     {
         $this->publicAttributes = [];
+        $this->hidden = $hidden;
+    }
+
+    /**
+     * @return array Current public attributes
+     * @deprecated Use {@see Model::publish()} instead
+     */
+    public function getPublicAttributes(): array
+    {
+        return $this->publish();
     }
 
     /**
      * @return array Current public attributes
      */
-    public function getPublicAttributes(): array
+    public function publish(): array
     {
         return $this->publicAttributes;
     }
@@ -58,6 +73,14 @@ class Model implements JsonSerializable
         $inflector = new EnglishInflector();
 
         return $inflector->pluralize(Naming::camelToSnake(Naming::getClassName(static::class)))[0];
+    }
+
+    /**
+     * @return array Attributes to hide
+     */
+    public function getHiddenAttributes(): array
+    {
+        return $this->hidden;
     }
 
     /*
