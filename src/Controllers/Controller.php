@@ -2,8 +2,6 @@
 
 namespace MvcliteCore\Controllers;
 
-use MvcliteCore\Middlewares\Middleware;
-
 /**
  * As part of the framework, the controller serves as the
  * intermediary between the view and the model.
