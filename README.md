@@ -1,6 +1,3 @@
-<p align="center"><img src="src/Resources/Medias/logo.png" width="400"></p>
-
-
 # About MVCLite 
 
 *MVCLite* is a lightweight **MVC** (Model-View-Controller) framework for building web applications in **PHP**. It provides a robust foundation for structuring your application's codebase, including features such as **middlewares**, **routing system**, **ORM** (Object-Relational Mapping), **Twig** templating engine integration, and more.
