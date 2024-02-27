@@ -235,7 +235,10 @@ class ORMSelection extends ORMQuery
 
             foreach ($line as $columnName => $columnValue)
             {
-                $lineObject->addPublicAttribute($columnName, $columnValue);
+                if (!in_array($columnName, $lineObject->getHiddenAttributes()))
+                {
+                    $lineObject->addPublicAttribute($columnName, $columnValue);
+                }
             }
 
             foreach ($this->getRelationships() as $relationship)
