@@ -21,6 +21,9 @@ class Router
     /** HTTP request method POST. */
     private const POST_METHOD = "POST";
 
+    /** API route type. */
+    private const API_TYPE = "API";
+
     /** Registered routes. */
     private static $routes = [];
 
@@ -56,6 +59,23 @@ class Router
             ->getParameters();
 
         return self::$routes[] = new Route(self::POST_METHOD, $path, $controller, $method, $parameters);
+    }
+
+    /**
+     * Create an API route.
+     *
+     * @param string $path URL path used by route
+     * @param string $controller Controller used by route
+     * @param string $method Controller method called by route
+     * @return Route Created route object
+     */
+    public static function api(string $path, string $controller, string $method): Route
+    {
+        $parameters = Delivery::get()
+            ->getRequest()
+            ->getParameters();
+
+        return self::$routes[] = new Route(self::API_TYPE, $path, $controller, $method, $parameters);
     }
 
     /**
