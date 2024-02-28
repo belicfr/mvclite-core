@@ -95,7 +95,8 @@ class Router
         $route = array_filter(self::$routes, function (Route $route) use ($path)
         {
             return $route->getPath() == $path
-                && $route->getHttpMethod() == self::getCurrentHttpMethod();
+                && $route->getHttpMethod() == self::getCurrentHttpMethod()
+                || $route->getHttpMethod() == self::API_TYPE;
         });
 
         if (!count($route))
@@ -108,7 +109,8 @@ class Router
 
         $route = current($route);
 
-        if ($route->getHttpMethod() !== self::getCurrentHttpMethod())
+        if ($route->getHttpMethod() !== self::getCurrentHttpMethod()
+            && $route->getHttpMethod() !== self::API_TYPE)
         {
             echo "WRONG HTTP METHOD!!";
             die;
