@@ -52,6 +52,11 @@ class File
         return $this->name;
     }
 
+    public function getExtension(): string
+    {
+        return pathinfo($this->getName(), PATHINFO_EXTENSION);
+    }
+
     /**
      * @return string File full path
      */
