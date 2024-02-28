@@ -47,7 +47,7 @@ class DatabaseQuery
         }
         catch (PDOException $e)
         {
-            $error = new FailedDatabaseQueryException($sqlQuery);
+            $error = new FailedDatabaseQueryException($sqlQuery, $parameters);
             $error->render();
         }
     }
