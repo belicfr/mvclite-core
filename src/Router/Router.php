@@ -95,8 +95,8 @@ class Router
         $route = array_filter(self::$routes, function (Route $route) use ($path)
         {
             return $route->getPath() == $path
-                && $route->getHttpMethod() == self::getCurrentHttpMethod()
-                || $route->getHttpMethod() == self::API_TYPE;
+                && ($route->getHttpMethod() == self::getCurrentHttpMethod()
+                    || $route->getHttpMethod() == self::API_TYPE);
         });
 
         if (!count($route))
