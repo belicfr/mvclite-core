@@ -50,7 +50,7 @@ class Validator
         {
             $inputValue = $this->getRequest()->getInput($input);
 
-            $isFilled = $inputValue !== null && strlen(trim($inputValue));
+            $isFilled = $inputValue !== null && (!is_string($inputValue) || strlen(trim($inputValue)));
 
             if (!$isFilled)
             {
