@@ -15,7 +15,7 @@
 You can install *MVCLite* via **Composer**. Run the following command in your terminal:
 
 ```bash
-composer create-project belicfr/mvclite project-name
+composer create-project belicfr/mvclite
 ```
 
 After installing *MVCLite*, you have to configure your application's settings in the `config` directory. The `config.php` file contains the main settings for your application.
@@ -41,7 +41,7 @@ You also have to configure the **htaccess** file, you can use the `.htaccess_exa
 
 ```apache
 RewriteEngine On
-RewriteBase /
+RewriteBase /website/
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !src/resources/(.*)$
@@ -97,7 +97,7 @@ public function __construct()
 *MVCLite* uses the **Twig** templating engine for separating logic from presentation in your views. You can create your views in the `src/Views` directory and then render them in your **controllers**.
 
 ```php
-View::render('view.twig', ['data' => $data]);
+View::render('View', ['data' => $data]);
 ```
 
 ### Twig
@@ -116,7 +116,7 @@ You can use the **Twig** templating engine to create your views. Here's an examp
 {% else %}
     <p>{{ content2 }}</p>
 {% endif %}
-{{ include('footer.twig', {'data': data}) }}
+{{ include('Footer.twig', {'data': data}) }}
 </body>
 </html>
 ```
