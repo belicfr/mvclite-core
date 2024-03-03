@@ -56,8 +56,6 @@ class Validator
             {
                 $this->addError("required", $input, $error ?? $defaultError);
             }
-
-            $this->updateValidationState($isFilled);
         }
 
         return $this;
@@ -96,8 +94,6 @@ class Validator
             $this->addError("confirmation", $input, $error ?? $defaultError);
         }
 
-        $this->updateValidationState($isConfirmed);
-
         return $this;
     }
 
@@ -125,8 +121,6 @@ class Validator
         {
             $this->addError("minLength", $input, $error ?? $defaultError);
         }
-
-        $this->updateValidationState($isRespectingGivenLength);
 
         return $this;
     }
@@ -156,8 +150,6 @@ class Validator
             $this->addError("maxLength", $input, $error ?? $defaultError);
         }
 
-        $this->updateValidationState($isRespectingGivenLength);
-
         return $this;
     }
 
@@ -186,8 +178,6 @@ class Validator
             $this->addError("matches", $input, $error ?? $defaultError);
         }
 
-        $this->updateValidationState($isMatchingPattern);
-
         return $this;
     }
 
@@ -214,8 +204,6 @@ class Validator
         {
             $this->addError("email", $input, $error ?? $defaultError);
         }
-
-        $this->updateValidationState($isValidEmailAddress);
 
         return $this;
     }
@@ -245,8 +233,6 @@ class Validator
         {
             $this->addError("numeric", $input, $error ?? $defaultError);
         }
-
-        $this->updateValidationState($isNumeric);
 
         return $this;
     }
@@ -278,8 +264,6 @@ class Validator
             $this->addError("max", $input, $error ?? $defaultError);
         }
 
-        $this->updateValidationState($isNotExceeding);
-
         return $this;
     }
 
@@ -310,8 +294,6 @@ class Validator
             $this->addError("min", $input, $error ?? $defaultError);
         }
 
-        $this->updateValidationState($isNotExceeding);
-
         return $this;
     }
 
@@ -341,8 +323,6 @@ class Validator
         {
             $this->addError("in", $input, $error ?? $defaultError);
         }
-
-        $this->updateValidationState($arrayContainsInput);
 
         return $this;
     }
@@ -379,8 +359,6 @@ class Validator
         {
             $this->addError("between", $input, $error ?? $defaultError);
         }
-
-        $this->updateValidationState($isBetween);
 
         return $this;
     }
@@ -421,8 +399,6 @@ class Validator
             $this->addError("dateSlot", $beginningDateInput, $error ?? $defaultError);
         }
 
-        $this->updateValidationState($isValidDateSlot);
-
         return $this;
     }
 
@@ -452,8 +428,6 @@ class Validator
         {
             $this->addError("futureDate", $dateInput, $error ?? $defaultError);
         }
-
-        $this->updateValidationState($isFutureDate);
 
         return $this;
     }
@@ -488,8 +462,6 @@ class Validator
         {
             $this->addError("extension", $fileInput, $error ?? $defaultError);
         }
-
-        $this->updateValidationState($hasAcceptedExtension);
 
         return $this;
     }
@@ -529,8 +501,6 @@ class Validator
             {
                 $this->addError("maxSize", $imageInput, $error ?? $defaultError);
             }
-
-            $this->updateValidationState($hasGoodSize);
         }
 
         return $this;
@@ -564,8 +534,6 @@ class Validator
         {
             $this->addError("unique", $input, $error ?? $defaultError);
         }
-
-        $this->updateValidationState($isNotUsed);
 
         return $this;
     }
@@ -602,8 +570,6 @@ class Validator
             {
                 $this->addError("password", $input, $error ?? $wrongPasswordDefaultError);
             }
-
-            $this->updateValidationState($isGoodPassword);
         }
 
         return $this;
@@ -642,8 +608,6 @@ class Validator
             $this->addError("exists", $input, $error ?? $defaultError);
         }
 
-        $this->updateValidationState($exists);
-
         return $this;
     }
 
@@ -674,12 +638,17 @@ class Validator
     public function addError(string $rule, string $input, string $message): Validator
     {
         $this->errors[$input][$rule] = $message;
+        $this->fail();
         return $this;
     }
 
-    protected function updateValidationState(bool $result): void
+    /**
+     * Set validation state variable to FALSE.
+     * To use during rule failing.
+     */
+    private function fail(): void
     {
-        $this->validationState &= $result;
+        $this->validationState = false;
     }
 
     /**
