@@ -16,15 +16,6 @@ class MvcLiteException extends Exception
      */
     private bool $overrideExceptionRenderingAuthorization;
 
-    /**
-     * @param string $title New MVCLite exception dialog title
-     */
-    public function setTitle(string $title): void
-    {
-        $this->title = $title;
-        $this->overrideExceptionRenderingAuthorization = false;
-    }
-
     public function __construct()
     {
         parent::__construct();
@@ -33,6 +24,7 @@ class MvcLiteException extends Exception
         $this->message = "An unknwon error is thrown by MVCLite.";
 
         $this->title = "MVCLite Fatal Error";
+        $this->overrideExceptionRenderingAuthorization = false;
     }
 
     /**
@@ -143,6 +135,14 @@ class MvcLiteException extends Exception
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    /**
+     * @param string $title New MVCLite exception dialog title
+     */
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
     }
 
     /**
