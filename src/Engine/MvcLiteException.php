@@ -11,19 +11,18 @@ class MvcLiteException extends Exception
     private string $title;
 
     /**
+     * If this exception must be rendered
+     * even if it is forbidden by config.php file.
+     */
+    private bool $overrideExceptionRenderingAuthorization;
+
+    /**
      * @param string $title New MVCLite exception dialog title
      */
     public function setTitle(string $title): void
     {
         $this->title = $title;
-    }
-
-    /**
-     * @return string MVCLite exception title
-     */
-    public function getTitle(): string
-    {
-        return $this->title;
+        $this->overrideExceptionRenderingAuthorization = false;
     }
 
     public function __construct()
@@ -136,5 +135,32 @@ class MvcLiteException extends Exception
                      ';
 
         echo "<style>$debugCss</style>";
+    }
+
+    /**
+     * @return string MVCLite exception title
+     */
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    /**
+     * @return bool If exception can be rendered
+     */
+    public function canRenderIt(): bool
+    {
+        return $this->overrideExceptionRenderingAuthorization
+               || defined("PREFERENCES")
+                  && PREFERENCES["render_mvclite_exceptions"];
+    }
+
+    /**
+     * Override MVCLite exceptions rendering
+     * preferences parameter.
+     */
+    protected function forceRendering(): void
+    {
+        $this->overrideExceptionRenderingAuthorization = true;
     }
 }
