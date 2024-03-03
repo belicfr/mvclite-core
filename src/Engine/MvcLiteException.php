@@ -77,7 +77,7 @@ class MvcLiteException extends Exception
      */
     public function render(): void
     {
-        if (defined("PREFERENCES") && PREFERENCES["render_mvclite_exceptions"] ?? false)
+        if ($this->canRenderIt())
         {
             echo $this->getDialog();
         }
