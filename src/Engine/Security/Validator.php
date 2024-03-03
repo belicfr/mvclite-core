@@ -57,7 +57,7 @@ class Validator
                 $this->addError("required", $input, $error ?? $defaultError);
             }
 
-            $this->validationState &= $isFilled;
+            $this->updateValidationState($isFilled);
         }
 
         return $this;
@@ -96,7 +96,7 @@ class Validator
             $this->addError("confirmation", $input, $error ?? $defaultError);
         }
 
-        $this->validationState &= $isConfirmed;
+        $this->updateValidationState($isConfirmed);
 
         return $this;
     }
@@ -126,7 +126,7 @@ class Validator
             $this->addError("minLength", $input, $error ?? $defaultError);
         }
 
-        $this->validationState &= $isRespectingGivenLength;
+        $this->updateValidationState($isRespectingGivenLength);
 
         return $this;
     }
@@ -156,7 +156,7 @@ class Validator
             $this->addError("maxLength", $input, $error ?? $defaultError);
         }
 
-        $this->validationState &= $isRespectingGivenLength;
+        $this->updateValidationState($isRespectingGivenLength);
 
         return $this;
     }
@@ -186,7 +186,7 @@ class Validator
             $this->addError("matches", $input, $error ?? $defaultError);
         }
 
-        $this->validationState &= $isMatchingPattern;
+        $this->updateValidationState($isMatchingPattern);
 
         return $this;
     }
@@ -215,7 +215,7 @@ class Validator
             $this->addError("email", $input, $error ?? $defaultError);
         }
 
-        $this->validationState &= $isValidEmailAddress;
+        $this->updateValidationState($isValidEmailAddress);
 
         return $this;
     }
@@ -246,7 +246,7 @@ class Validator
             $this->addError("numeric", $input, $error ?? $defaultError);
         }
 
-        $this->validationState &= $isNumeric;
+        $this->updateValidationState($isNumeric);
 
         return $this;
     }
@@ -278,7 +278,7 @@ class Validator
             $this->addError("max", $input, $error ?? $defaultError);
         }
 
-        $this->validationState &= $isNotExceeding;
+        $this->updateValidationState($isNotExceeding);
 
         return $this;
     }
@@ -310,7 +310,7 @@ class Validator
             $this->addError("min", $input, $error ?? $defaultError);
         }
 
-        $this->validationState &= $isNotExceeding;
+        $this->updateValidationState($isNotExceeding);
 
         return $this;
     }
@@ -342,7 +342,7 @@ class Validator
             $this->addError("in", $input, $error ?? $defaultError);
         }
 
-        $this->validationState &= $arrayContainsInput;
+        $this->updateValidationState($arrayContainsInput);
 
         return $this;
     }
@@ -380,7 +380,7 @@ class Validator
             $this->addError("between", $input, $error ?? $defaultError);
         }
 
-        $this->validationState &= $isBetween;
+        $this->updateValidationState($isBetween);
 
         return $this;
     }
@@ -421,7 +421,7 @@ class Validator
             $this->addError("dateSlot", $beginningDateInput, $error ?? $defaultError);
         }
 
-        $this->validationState &= $isValidDateSlot;
+        $this->updateValidationState($isValidDateSlot);
 
         return $this;
     }
@@ -453,7 +453,7 @@ class Validator
             $this->addError("futureDate", $dateInput, $error ?? $defaultError);
         }
 
-        $this->validationState &= $isFutureDate;
+        $this->updateValidationState($isFutureDate);
 
         return $this;
     }
@@ -489,7 +489,7 @@ class Validator
             $this->addError("extension", $fileInput, $error ?? $defaultError);
         }
 
-        $this->validationState &= $hasAcceptedExtension;
+        $this->updateValidationState($hasAcceptedExtension);
 
         return $this;
     }
@@ -530,7 +530,7 @@ class Validator
                 $this->addError("maxSize", $imageInput, $error ?? $defaultError);
             }
 
-            $this->validationState &= $hasGoodSize;
+            $this->updateValidationState($hasGoodSize);
         }
 
         return $this;
@@ -565,7 +565,7 @@ class Validator
             $this->addError("unique", $input, $error ?? $defaultError);
         }
 
-        $this->validationState &= $isNotUsed;
+        $this->updateValidationState($isNotUsed);
 
         return $this;
     }
@@ -603,7 +603,7 @@ class Validator
                 $this->addError("password", $input, $error ?? $wrongPasswordDefaultError);
             }
 
-            $this->validationState &= $isGoodPassword;
+            $this->updateValidationState($isGoodPassword);
         }
 
         return $this;
@@ -642,7 +642,7 @@ class Validator
             $this->addError("exists", $input, $error ?? $defaultError);
         }
 
-        $this->validationState &= $exists;
+        $this->updateValidationState($exists);
 
         return $this;
     }
@@ -660,14 +660,7 @@ class Validator
      */
     public function hasFailed(): bool
     {
-        $errorsCount = 0;
-
-        foreach ($this->errors as $rule)
-        {
-            $errorsCount += count($rule);
-        }
-
-        return $errorsCount;
+        return !$this->validationState;
     }
 
     /**
@@ -682,6 +675,11 @@ class Validator
     {
         $this->errors[$input][$rule] = $message;
         return $this;
+    }
+
+    protected function updateValidationState(bool $result): void
+    {
+        $this->validationState &= $result;
     }
 
     /**
