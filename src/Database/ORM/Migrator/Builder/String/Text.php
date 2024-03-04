@@ -2,7 +2,7 @@
 
 namespace MvcliteCore\Database\ORM\Migrator\Builder\String;
 
-class TextColumn extends StringColumn
+class Text extends StringColumn
 {
     private const DEFINITION_TEMPLATE = "`%s` TEXT %s";
 
@@ -25,10 +25,10 @@ class TextColumn extends StringColumn
      * Creates new column for migration.
      *
      * @param string $name Column name
-     * @return TextColumn New column
+     * @return Text New column
      */
-    public static function make(string $name): TextColumn
+    public static function make(string $name): Text
     {
-        return new TextColumn($name);
+        return new Text($name);
     }
 }

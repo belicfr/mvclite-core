@@ -2,7 +2,7 @@
 
 namespace MvcliteCore\Database\ORM\Migrator\Builder\String;
 
-class VarcharColumn extends StringColumn
+class Varchar extends StringColumn
 {
     private const DEFINITION_TEMPLATE = "`%s` VARCHAR(%s) %s";
 
@@ -33,7 +33,7 @@ class VarcharColumn extends StringColumn
         return $this->maxLength;
     }
 
-    public function maxLength(int $length): VarcharColumn
+    public function maxLength(int $length): Varchar
     {
         if ($length > 0)
         {
@@ -47,10 +47,10 @@ class VarcharColumn extends StringColumn
      * Creates new column for migration.
      *
      * @param string $name Column name
-     * @return VarcharColumn New column
+     * @return Varchar New column
      */
-    public static function make(string $name): VarcharColumn
+    public static function make(string $name): Varchar
     {
-        return new VarcharColumn($name);
+        return new Varchar($name);
     }
 }
