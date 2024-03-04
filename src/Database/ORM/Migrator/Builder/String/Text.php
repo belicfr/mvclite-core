@@ -2,7 +2,9 @@
 
 namespace MvcliteCore\Database\ORM\Migrator\Builder\String;
 
-class Text extends StringColumn
+use MvcliteCore\Database\ORM\Migrator\Builder\Column;
+
+class Text extends Column
 {
     private const DEFINITION_TEMPLATE = "`%s` TEXT %s";
 

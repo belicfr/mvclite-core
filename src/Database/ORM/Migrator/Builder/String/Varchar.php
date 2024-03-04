@@ -2,7 +2,9 @@
 
 namespace MvcliteCore\Database\ORM\Migrator\Builder\String;
 
-class Varchar extends StringColumn
+use MvcliteCore\Database\ORM\Migrator\Builder\Column;
+
+class Varchar extends Column
 {
     private const DEFINITION_TEMPLATE = "`%s` VARCHAR(%s) %s";
 
@@ -10,11 +12,11 @@ class Varchar extends StringColumn
 
     private int $maxLength;
 
-    public function __construct(string $name)
+    public function __construct(string $name, int $maxLength = self::DEFAULT_MAX_LENGTH)
     {
         parent::__construct($name);
 
-        $this->maxLength = self::DEFAULT_MAX_LENGTH;
+        $this->maxLength = $maxLength;
     }
 
     /**
