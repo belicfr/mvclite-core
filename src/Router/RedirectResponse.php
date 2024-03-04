@@ -73,6 +73,7 @@ class RedirectResponse
     public function redirect(): void
     {
         header("Location: " . $this->route->getCompletePath() . $this->route->prepareParameters());
+        die;
         // TODO: verify parameters sharing during redirection.
     }
 }
