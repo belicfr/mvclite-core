@@ -22,7 +22,7 @@ abstract class Plugin
      * MVCLite event:
      * Before router is called.
      */
-    public abstract function beforeRouter();
+    public abstract function onBeforeRouter();
 
     /**
      * MVCLite event:
