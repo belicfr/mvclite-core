@@ -2,6 +2,8 @@
 
 namespace MvcliteCore\API;
 
+use MvcliteCore\API\Exceptions\NotFoundApiException;
+
 class API
 {
     public const NOT_FOUND = 404;
@@ -61,7 +63,7 @@ class API
      */
     public function respondNotFound(): APIResponse
     {
-        return $this->response(self::NOT_FOUND, $this->getAllData());
+        return $this->response(self::NOT_FOUND);
     }
 
     /**
@@ -73,11 +75,17 @@ class API
      */
     public function respondSuccess(): APIResponse
     {
-        return $this->response(self::SUCCESS, $this->getAllData());
+        return $this->response(self::SUCCESS);
     }
 
     public static function open(string $api): API
     {
+        if (!class_exists($api))
+        {
+            $error = new NotFoundApiException($api);
+            $error->render();
+        }
+
         return new $api();
     }
 }
