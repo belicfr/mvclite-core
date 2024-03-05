@@ -4,7 +4,13 @@ namespace MvcliteCore\Plugins;
 
 class Plugin
 {
-    private string $name;
+    /** Plugin name. */
+    protected string $name;
+
+    public function __construct()
+    {
+        $this->name = null;  // Default value  =>  NULL
+    }
 
     /**
      * @return string Plugin name
@@ -12,13 +18,5 @@ class Plugin
     public function getName(): string
     {
         return $this->name;
-    }
-
-    /**
-     * @param string $name New plugin name
-     */
-    protected function setName(string $name): void
-    {
-        $this->name = $name;
     }
 }
