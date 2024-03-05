@@ -7,6 +7,11 @@ abstract class Plugin
     /** Plugin name. */
     protected string $name;
 
+    public function __construct()
+    {
+        // Empty constructor.
+    }
+
     /**
      * MVCLite event:
      * On application started.
