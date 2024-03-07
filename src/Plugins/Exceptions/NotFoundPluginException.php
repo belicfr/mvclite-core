@@ -6,12 +6,11 @@ use MvcliteCore\Engine\MvcLiteException;
 
 class NotFoundPluginException extends MvcLiteException
 {
-    public function __construct(string $pluginName, $pluginClass)
+    public function __construct(string $pluginClass)
     {
         parent::__construct();
 
         $this->code = "MVCLITE_NOT_FOUND_PLUGIN";
-        $this->message = "$pluginName plugin not found.<br />
-                          <strong>Plugin class:</strong> $pluginClass";
+        $this->message = "$pluginClass plugin not found.";
     }
 }
