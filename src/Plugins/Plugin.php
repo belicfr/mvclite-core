@@ -2,7 +2,7 @@
 
 namespace MvcliteCore\Plugins;
 
-abstract class Plugin
+class Plugin
 {
     /** Plugin name. */
     protected string $name;
@@ -16,31 +16,82 @@ abstract class Plugin
      * MVCLite event:
      * On application started.
      */
-    public abstract function onStarted(): void;
+    public function onStarted(): void
+    {
+        // Empty event.
+    }
+
+    /**
+     * MVCLite event:
+     * Before project configuration file is loaded.
+     */
+    public function onBeforeConfigLoad(): void
+    {
+        // Empty event.
+    }
+
+    /**
+     * MVCLite event:
+     * After project configuration file is loaded.
+     */
+    public function onAfterConfigLoad(): void
+    {
+        // Empty event.
+    }
+
+    /**
+     * MVCLite event:
+     * Before Delivery is initialized.
+     */
+    public function onBeforeDeliveryFirstLoad(): void
+    {
+        // Empty event.
+    }
+
+    /**
+     * MVCLite event:
+     * After Delivery is initialized.
+     */
+    public function onAfterDeliveryFirstLoad(): void
+    {
+        // Empty event.
+    }
 
     /**
      * MVCLite event:
      * Before router is called.
      */
-    public abstract function onBeforeRouter(): void;
+    public function onBeforeRouter(): void
+    {
+        // Empty event.
+    }
 
     /**
      * MVCLite event:
      * After router is called.
      */
-    public abstract function onAfterRouter(): void;
+    public function onAfterRouter(): void
+    {
+        // Empty event.
+    }
 
     /**
      * MVCLite event:
      * Before delivery is reset.
      */
-    public abstract function onBeforeDeliveryReset(): void;
+    public function onBeforeDeliveryReset(): void
+    {
+        // Empty event.
+    }
 
     /**
      * MVCLite event:
      * After delivery is reset.
      */
-    public abstract function onAfterDeliveryReset(): void;
+    public function onAfterDeliveryReset(): void
+    {
+        // Empty event.
+    }
 
     /**
      * @return string Plugin name
