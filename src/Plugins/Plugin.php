@@ -9,38 +9,38 @@ abstract class Plugin
 
     public function __construct()
     {
-        // Empty constructor.
+        $this->name = "Plugin Name";
     }
 
     /**
      * MVCLite event:
      * On application started.
      */
-    public abstract function onStarted();
+    public abstract function onStarted(): void;
 
     /**
      * MVCLite event:
      * Before router is called.
      */
-    public abstract function onBeforeRouter();
+    public abstract function onBeforeRouter(): void;
 
     /**
      * MVCLite event:
-     * When router is retrieving the given route.
+     * After router is called.
      */
-    public abstract function onRouteRetrieving();
+    public abstract function onAfterRouter(): void;
 
     /**
      * MVCLite event:
-     * When the route has been found.
+     * Before delivery is reset.
      */
-    public abstract function onRouteFound();
+    public abstract function onBeforeDeliveryReset(): void;
 
     /**
      * MVCLite event:
-     * If the route has not been found.
+     * After delivery is reset.
      */
-    public abstract function onRouteNotFound();
+    public abstract function onAfterDeliveryReset(): void;
 
     /**
      * @return string Plugin name
