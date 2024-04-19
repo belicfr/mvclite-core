@@ -93,7 +93,7 @@ class ORMSelection extends ORMQuery
      */
     public function with(string ...$relationships): ORMSelection
     {
-        $this->relationships = $relationships;
+        $this->relationships = array_filter($relationships, fn ($value) => $value !== null);
 
         return $this;
     }
@@ -231,7 +231,6 @@ class ORMSelection extends ORMQuery
         while ($line = $query->get())
         {
             $lineObject = new ($this->getModelClass());
-            $tableColumns = $this->getColumns();
 
             foreach ($line as $columnName => $columnValue)
             {
