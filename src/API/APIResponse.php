@@ -18,6 +18,7 @@ class APIResponse implements JsonSerializable
 
     function send(): void
     {
+        http_response_code($this->status);
         echo json_encode($this);
         die;  // TODO: keep this die instruction?
     }

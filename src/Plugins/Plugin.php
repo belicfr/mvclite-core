@@ -2,45 +2,96 @@
 
 namespace MvcliteCore\Plugins;
 
-abstract class Plugin
+class Plugin
 {
     /** Plugin name. */
     protected string $name;
 
     public function __construct()
     {
-        // Empty constructor.
+        $this->name = "Plugin Name";
     }
 
     /**
      * MVCLite event:
      * On application started.
      */
-    public abstract function onStarted();
+    public function onStarted(): void
+    {
+        // Empty event.
+    }
+
+    /**
+     * MVCLite event:
+     * Before project configuration file is loaded.
+     */
+    public function onBeforeConfigLoad(): void
+    {
+        // Empty event.
+    }
+
+    /**
+     * MVCLite event:
+     * After project configuration file is loaded.
+     */
+    public function onAfterConfigLoad(): void
+    {
+        // Empty event.
+    }
+
+    /**
+     * MVCLite event:
+     * Before Delivery is initialized.
+     */
+    public function onBeforeDeliveryFirstLoad(): void
+    {
+        // Empty event.
+    }
+
+    /**
+     * MVCLite event:
+     * After Delivery is initialized.
+     */
+    public function onAfterDeliveryFirstLoad(): void
+    {
+        // Empty event.
+    }
 
     /**
      * MVCLite event:
      * Before router is called.
      */
-    public abstract function onBeforeRouter();
+    public function onBeforeRouter(): void
+    {
+        // Empty event.
+    }
 
     /**
      * MVCLite event:
-     * When router is retrieving the given route.
+     * After router is called.
      */
-    public abstract function onRouteRetrieving();
+    public function onAfterRouter(): void
+    {
+        // Empty event.
+    }
 
     /**
      * MVCLite event:
-     * When the route has been found.
+     * Before delivery is reset.
      */
-    public abstract function onRouteFound();
+    public function onBeforeDeliveryReset(): void
+    {
+        // Empty event.
+    }
 
     /**
      * MVCLite event:
-     * If the route has not been found.
+     * After delivery is reset.
      */
-    public abstract function onRouteNotFound();
+    public function onAfterDeliveryReset(): void
+    {
+        // Empty event.
+    }
 
     /**
      * @return string Plugin name
