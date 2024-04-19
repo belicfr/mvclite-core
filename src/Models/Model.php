@@ -166,8 +166,8 @@ class Model implements JsonSerializable
      * ************ JSON SERIALIZATION ************
      */
 
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
-        return $this->getPublicAttributes();
+        return $this->publish();
     }
 }
