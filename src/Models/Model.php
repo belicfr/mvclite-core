@@ -13,6 +13,7 @@ use MvcliteCore\Models\Relationships\BelongsTo;
 use MvcliteCore\Models\Relationships\HasMany;
 use MvcliteCore\Models\Relationships\HasOne;
 
+use MvcliteCore\Models\Relationships\ManyToMany;
 use Symfony\Component\String\Inflector\EnglishInflector;
 
 class Model implements JsonSerializable
@@ -102,6 +103,15 @@ class Model implements JsonSerializable
     public function hasMany(string $model, ?string $customColumnName = null): array
     {
         return (new HasMany($this, $model, $customColumnName))
+            ->run();
+    }
+
+    public function manyToMany(string $model,
+                               ?string $customTableName = null,
+                               ?string $customLeftColumnName = null,
+                               ?string $customRightColumnName = null): array
+    {
+        return (new ManyToMany($this, $model, $customTableName, $customLeftColumnName, $customRightColumnName))
             ->run();
     }
 
