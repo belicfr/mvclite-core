@@ -17,7 +17,7 @@ class HasMany extends ModelRelationship
 
     public function __construct(Model $leftModel, string $rightModel, ?string $customColumnName = null)
     {
-        parent::__construct($leftModel, $rightModel, $customColumnName);
+        parent::__construct($leftModel, $rightModel);
 
         $this->foreignKeyColumnName
             = $customColumnName ?? "id_" . Naming::camelToSnake(Naming::getClassName($leftModel::class));
