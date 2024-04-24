@@ -11,7 +11,7 @@ class ModelRelationship
 
     private string $rightModel;
 
-    public function __construct(Model $leftModel, string $rightModel, ?string $customColumnName = null)
+    public function __construct(Model $leftModel, string $rightModel)
     {
         $this->leftModel = $leftModel;
         $this->rightModel = $rightModel;
