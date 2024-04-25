@@ -57,8 +57,8 @@ class ManyToMany extends ModelRelationship
      */
     public function run(): array
     {
-        $leftModelTableName = (new $this->getLeftModel())::getTableName();
-        $rightModelTableName = (new $this->getRightModel())::getTableName();
+        $leftModelTableName = (new ($this->getLeftModel())())::getTableName();
+        $rightModelTableName = (new ($this->getRightModel())())::getTableName();
 
         $related = Database::query("SELECT r.*
                                              FROM {$leftModelTableName} l
