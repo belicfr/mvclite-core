@@ -62,7 +62,7 @@ class ManyToMany extends ModelRelationship
 
         $related = Database::query("SELECT r.*
                                              FROM {$leftModelTableName} l
-                                             INNER JOIN rel__{$this->relationshipTableName} rl
+                                             INNER JOIN {$this->relationshipTableName} rl
                                              ON rl.{$this->leftColumnName} = l.id
                                              INNER JOIN {$rightModelTableName} r
                                              ON rl.{$this->rightColumnName} = r.id");
