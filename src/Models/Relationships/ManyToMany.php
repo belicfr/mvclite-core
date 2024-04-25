@@ -21,15 +21,13 @@ class ManyToMany extends ModelRelationship
 
     public function __construct(Model $leftModel,
                                 string $rightModel,
-                                ?string $customTableName = null,
+                                string $relationshipTableName,
                                 ?string $customLeftColumnName = null,
                                 ?string $customRightColumnName = null)
     {
         parent::__construct($leftModel, $rightModel);
 
-        $this->relationshipTableName = $customTableName
-                                    ?? "rel_{$leftModel::getTableName()}__"
-                                     . (new $rightModel())::getTableName();
+        $this->relationshipTableName = "rel__$relationshipTableName";
         $this->customLeftColumnName = $customLeftColumnName;
         $this->customRightColumnName = $customRightColumnName;
     }
@@ -62,7 +60,7 @@ class ManyToMany extends ModelRelationship
 
         $related = Database::query("SELECT r.*
                                              FROM {$leftModelTableName} l
-                                             INNER JOIN {$this->relationshipTableName} rl
+                                             INNER JOIN rel__{$this->relationshipTableName} rl
                                              ON rl.{$this->customLeftColumnName} = l.{$this->customLeftColumnName}
                                              INNER JOIN {$rightModelTableName} r
                                              ON rl.{$this->customRightColumnName} = r.{$this->customRightColumnName}");
