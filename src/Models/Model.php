@@ -112,7 +112,7 @@ class Model implements JsonSerializable
                                ?string $customRightColumnName = null): array
     {
         return (new ManyToMany($this,
-                               $model, 
+                               $model,
                                $relationshipTableName,
                                $customLeftColumnName,
                                $customRightColumnName))
