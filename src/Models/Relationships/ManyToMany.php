@@ -65,7 +65,9 @@ class ManyToMany extends ModelRelationship
                                              INNER JOIN {$this->relationshipTableName} rl
                                              ON rl.{$this->leftColumnName} = l.id
                                              INNER JOIN {$rightModelTableName} r
-                                             ON rl.{$this->rightColumnName} = r.id");
+                                             ON rl.{$this->rightColumnName} = r.id
+                                             WHERE l.id = ?",
+                                   $this->getLeftModel()->publish()["id"]);
 
         return $this->children = $related->getAll();
     }
