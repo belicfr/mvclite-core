@@ -107,11 +107,15 @@ class Model implements JsonSerializable
     }
 
     public function manyToMany(string $model,
-                               ?string $customTableName = null,
+                               string $relationshipTableName,
                                ?string $customLeftColumnName = null,
                                ?string $customRightColumnName = null): array
     {
-        return (new ManyToMany($this, $model, $customTableName, $customLeftColumnName, $customRightColumnName))
+        return (new ManyToMany($this,
+                               $model, 
+                               $relationshipTableName,
+                               $customLeftColumnName,
+                               $customRightColumnName))
             ->run();
     }
 
