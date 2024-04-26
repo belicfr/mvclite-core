@@ -11,10 +11,13 @@ class ModelRelationship
 
     private string $rightModel;
 
-    public function __construct(Model $leftModel, string $rightModel)
+    private $queryExtension;
+
+    public function __construct(Model $leftModel, string $rightModel, callable $queryExtension = null)
     {
         $this->leftModel = $leftModel;
         $this->rightModel = $rightModel;
+        $this->queryExtension = $queryExtension;
     }
 
     public function getLeftModel(): Model
@@ -25,5 +28,15 @@ class ModelRelationship
     public function getRightModel(): string
     {
         return $this->rightModel;
+    }
+
+    public function getQueryExtension(): callable
+    {
+        return $this->queryExtension;
+    }
+
+    public function hasQueryExtension(): bool
+    {
+        return $this->queryExtension !== null;
     }
 }
