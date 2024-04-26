@@ -48,7 +48,14 @@ class BelongsTo extends ModelRelationship
     {
         $related = (new (parent::getRightModel()))
             ->select()
-            ->where("id", parent::getLeftModel()->getPublicAttributes()[$this->getForeignKeyColumnName()])
+            ->where("id", parent::getLeftModel()->getPublicAttributes()[$this->getForeignKeyColumnName()]);
+
+        if ($this->hasQueryExtension())
+        {
+            $this->getQueryExtension()($related);
+        }
+
+        $related
             ->execute()
             ->asArray();
 

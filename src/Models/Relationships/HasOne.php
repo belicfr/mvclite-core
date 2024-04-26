@@ -48,7 +48,14 @@ class HasOne extends ModelRelationship
     {
         $related = (new (parent::getRightModel()))
             ->select()
-            ->where($this->getForeignKeyColumnName(), parent::getLeftModel()->getPublicAttributes()["id"])
+            ->where($this->getForeignKeyColumnName(), parent::getLeftModel()->publish()["id"]);
+
+        if ($this->hasQueryExtension())
+        {
+            $this->getQueryExtension()($related);
+        }
+
+        $related
             ->execute()
             ->asArray();
 
