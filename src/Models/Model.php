@@ -88,19 +88,23 @@ class Model implements JsonSerializable
      * ******  MVCLite MODELS RELATIONSHIPS  ******
      */
 
-    public function belongsTo(string $model, ?string $customColumnName = null): ?Model
+    public function belongsTo(string $model,
+                              ?string $customColumnName = null,
+                              ?callable $queryExtension = null): ?Model
     {
-        return (new BelongsTo($this, $model, $customColumnName))
+        return (new BelongsTo($this, $model, $customColumnName, $queryExtension))
             ->run();
     }
 
-    public function hasOne(string $model, ?string $customColumnName = null): ?Model
+    public function hasOne(string $model,
+                           ?string $customColumnName = null): ?Model
     {
         return (new HasOne($this, $model, $customColumnName))
             ->run();
     }
 
-    public function hasMany(string $model, ?string $customColumnName = null): array
+    public function hasMany(string $model,
+                            ?string $customColumnName = null): array
     {
         return (new HasMany($this, $model, $customColumnName))
             ->run();
