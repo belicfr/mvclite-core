@@ -52,10 +52,10 @@ class HasMany extends ModelRelationship
 
         if ($this->hasQueryExtension())
         {
-            $this->getQueryExtension()($related);
+            $related = $this->getQueryExtension()($related);
         }
 
-        $related
+        $related = $related
             ->execute()
             ->asArray();
 
